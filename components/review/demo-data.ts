@@ -236,3 +236,115 @@ export const finalReasoning = {
   confidence: '3 of 4 personas at Hire or stronger',
   condition: 'Verify the "40% latency" claim during reference checks.',
 }
+
+// ── Candidate Report ────────────────────────────────────────────────
+// A durable, evidence-linked digest of the live review above.
+
+export type Evidence = { source: 'Resume' | 'Transcript'; quote: string }
+
+export type ReportPoint = {
+  title: string
+  detail: string
+  evidence: Evidence
+  raisedBy: AgentKey
+}
+
+export type Disagreement = {
+  topic: string
+  positions: { agent: AgentKey; stance: string }[]
+  status: string
+}
+
+export type EvidenceGap = {
+  claim: string
+  issue: string
+  source: 'Resume' | 'Transcript'
+  action: string
+}
+
+export const report = {
+  confidenceLevel: 'Medium-High',
+  confidenceNote:
+    'Strong convergence on technical signal; residual uncertainty on one unverified impact metric.',
+  strengths: [
+    {
+      title: 'Production-grade systems reasoning',
+      detail:
+        'Explained idempotency and back-pressure unprompted — mechanism-level detail that is hard to fabricate.',
+      evidence: {
+        source: 'Transcript',
+        quote:
+          '"We made the payment writes idempotent with a dedupe key so Kafka retries could not double-charge."',
+      },
+      raisedBy: 'tech',
+    },
+    {
+      title: 'Healthy collaboration pattern',
+      detail: 'Credits teammates by default rather than claiming solo wins — predicts good senior partnership.',
+      evidence: {
+        source: 'Transcript',
+        quote:
+          '"I paired with our SRE for two weeks — the win was really the whole on-call group tightening the runbook."',
+      },
+      raisedBy: 'hr',
+    },
+    {
+      title: 'End-to-end ownership of a real migration',
+      detail: 'Drove a monolith-to-services split to completion, not just a proposal.',
+      evidence: {
+        source: 'Resume',
+        quote: '"Led migration of checkout monolith to 4 services over 8 months."',
+      },
+      raisedBy: 'manager',
+    },
+  ] as ReportPoint[],
+  concerns: [
+    {
+      title: 'Unverified 40% latency claim',
+      detail: 'Headline metric had no baseline or measurement window when probed. Not a blocker, but unconfirmed.',
+      evidence: { source: 'Resume', quote: '"Cut checkout latency 40%."' },
+      raisedBy: 'skeptic',
+    },
+    {
+      title: 'Roadmap set above them',
+      detail: 'Direction was owned by a staff engineer; candidate owned execution on one slice. Slight level-fit question.',
+      evidence: {
+        source: 'Transcript',
+        quote: '"The roadmap was mostly set by my staff eng; I owned execution on the checkout slice."',
+      },
+      raisedBy: 'manager',
+    },
+  ] as ReportPoint[],
+  disagreements: [
+    {
+      topic: 'Is this a clear senior-level hire, or strong-mid?',
+      positions: [
+        { agent: 'tech', stance: 'Senior — depth of reasoning settles it' },
+        { agent: 'manager', stance: 'Resolved to Hire after collaboration signal, but level was genuinely close' },
+      ],
+      status: 'Resolved by majority, not consensus — Skeptic still frames it as conditional.',
+    },
+    {
+      topic: 'How much weight should the unverified metric carry?',
+      positions: [
+        { agent: 'skeptic', stance: 'Keep it as an explicit reference-check condition' },
+        { agent: 'tech', stance: 'Immaterial to the decision given the mechanism detail' },
+      ],
+      status: 'Unresolved — panel proceeded but did not agree on the metric’s weight.',
+    },
+  ] as Disagreement[],
+  evidenceGaps: [
+    {
+      claim: '40% checkout latency reduction',
+      issue: 'No baseline number, time window, or attribution provided under questioning.',
+      source: 'Resume',
+      action: 'Confirm with a reference or ask for the dashboard in a follow-up.',
+    },
+    {
+      claim: 'Scope of leadership on the migration',
+      issue: 'Execution ownership is clear; strategic ownership is not evidenced either way.',
+      source: 'Transcript',
+      action: 'Probe scope of decision-making in reference checks.',
+    },
+  ] as EvidenceGap[],
+}

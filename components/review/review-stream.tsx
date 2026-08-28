@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   FileSearch,
@@ -423,6 +424,18 @@ export function ReviewStream() {
                       <p className="text-sm leading-relaxed text-foreground">
                         <span className="font-semibold">Condition:</span> {finalReasoning.condition}
                       </p>
+                    </div>
+
+                    <div className="mt-5 flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="text-sm text-muted-foreground">
+                        Want the durable, evidence-linked version?
+                      </p>
+                      <Button asChild className="gap-2 rounded-xl font-display font-semibold">
+                        <Link href="/report">
+                          View full candidate report
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </Button>
                     </div>
                   </div>
                 </div>

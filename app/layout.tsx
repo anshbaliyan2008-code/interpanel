@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, Inter } from 'next/font/google'
 import CursorRobot from '@/components/cursor-robot'
+import ConsensusOrb from '@/components/consensus-orb'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -52,6 +53,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`bg-background ${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
+        <div className="fixed top-0 right-0 -z-10 opacity-90 pointer-events-none hidden md:block" aria-hidden="true">
+          <ConsensusOrb size={380} />
+        </div>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
         <CursorRobot />

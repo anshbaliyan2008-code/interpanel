@@ -1,106 +1,3 @@
-/* ============================================================
-   INTERPANEL — light, futuristic theme
-   Add these fonts to your <head> (or app/layout.tsx via next/font):
-
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-   Then merge the block below into your globals.css (it overrides the
-   shadcn/v0 CSS variables so every existing component picks it up
-   automatically — you don't need to touch component files).
-   ============================================================ */
-
-:root {
-  /* light, cool, "AI lab" palette */
-  --background: 240 33% 98%;         /* near-white, faint indigo tint */
-  --foreground: 234 24% 14%;         /* deep slate-indigo text */
-
-  --card: 0 0% 100%;
-  --card-foreground: 234 24% 14%;
-
-  --primary: 243 75% 59%;            /* electric indigo */
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 189 94% 43%;          /* cyan accent */
-  --secondary-foreground: 0 0% 100%;
-
-  --muted: 240 20% 94%;
-  --muted-foreground: 234 10% 40%;
-
-  --accent: 189 94% 94%;
-  --accent-foreground: 234 24% 14%;
-
-  --border: 234 20% 88%;
-  --input: 234 20% 90%;
-  --ring: 243 75% 59%;
-
-  --radius: 1rem;
-}
-
-body {
-  background:
-    radial-gradient(1200px 600px at 85% -10%, rgba(99, 102, 241, 0.10), transparent 60%),
-    radial-gradient(900px 500px at 0% 20%, rgba(34, 211, 238, 0.10), transparent 55%),
-    hsl(var(--background));
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-  color: hsl(var(--foreground));
-}
-
-h1, h2, h3, .display-font {
-  font-family: "Space Grotesk", "Inter", sans-serif;
-  letter-spacing: -0.02em;
-}
-
-/* Signature "impress the judge" heading treatment */
-.gradient-text {
-  background: linear-gradient(90deg, #4338CA 0%, #6366F1 45%, #06B6D4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Glass card for panels / agent cards */
-.glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(99, 102, 241, 0.12);
-  box-shadow: 0 8px 30px rgba(67, 56, 202, 0.08);
-  border-radius: var(--radius);
-}
-
-/* Subtle animated grid / circuit backdrop for a "futuristic" feel.
-   Add className="circuit-bg" to your hero section wrapper. */
-.circuit-bg {
-  position: relative;
-  overflow: hidden;
-}
-.circuit-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent);
-  animation: circuit-drift 18s linear infinite;
-  pointer-events: none;
-}
-@keyframes circuit-drift {
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 42px 42px, 42px 42px; }
-}
-
-/* Respect reduced-motion users */
-@media (prefers-reduced-motion: reduce) {
-  .circuit-bg::before { animation: none; }
-  * { scroll-behavior: auto !important; }
-}
-
-html {
-  scroll-behavior: smooth;
-}
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
@@ -154,26 +51,30 @@ html {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ============================================================
+   LIGHT, FUTURISTIC THEME — brighter primary/accent so the
+   "AI lab" feel actually reads, instead of default shadcn gray.
+   ============================================================ */
 :root {
   color-scheme: light;
-  --background: oklch(0.985 0.004 260);
-  --foreground: oklch(0.22 0.02 265);
+  --background: oklch(0.985 0.006 264);
+  --foreground: oklch(0.2 0.03 265);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.02 265);
+  --card-foreground: oklch(0.2 0.03 265);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.02 265);
-  --primary: oklch(0.52 0.19 268);
+  --popover-foreground: oklch(0.2 0.03 265);
+  --primary: oklch(0.55 0.22 268);
   --primary-foreground: oklch(0.99 0.005 260);
-  --secondary: oklch(0.96 0.008 260);
-  --secondary-foreground: oklch(0.3 0.03 265);
-  --muted: oklch(0.96 0.008 260);
-  --muted-foreground: oklch(0.52 0.02 265);
-  --accent: oklch(0.94 0.03 268);
-  --accent-foreground: oklch(0.4 0.14 268);
+  --secondary: oklch(0.7 0.15 200);
+  --secondary-foreground: oklch(0.15 0.02 260);
+  --muted: oklch(0.96 0.01 264);
+  --muted-foreground: oklch(0.5 0.02 265);
+  --accent: oklch(0.93 0.05 220);
+  --accent-foreground: oklch(0.35 0.15 268);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.91 0.01 262);
+  --border: oklch(0.9 0.015 262);
   --input: oklch(0.91 0.01 262);
-  --ring: oklch(0.52 0.19 268);
+  --ring: oklch(0.55 0.22 268);
   --persona-tech: oklch(0.6 0.15 250);
   --persona-hr: oklch(0.65 0.15 155);
   --persona-manager: oklch(0.68 0.16 60);
@@ -183,7 +84,7 @@ html {
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.9rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -229,48 +130,66 @@ html {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    color-scheme: dark;
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-  }
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, oklch(0.55 0.22 268 / 0.08), transparent 60%),
+      radial-gradient(900px 500px at 0% 20%, oklch(0.7 0.15 200 / 0.08), transparent 55%),
+      var(--background);
   }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---- extra utility classes for the redesign ---- */
+
+.gradient-text {
+  background: linear-gradient(90deg, oklch(0.45 0.2 268), oklch(0.55 0.22 268) 45%, oklch(0.7 0.15 200));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-card {
+  background: oklch(1 0 0 / 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid oklch(0.55 0.22 268 / 0.12);
+  box-shadow: 0 8px 30px oklch(0.45 0.2 268 / 0.1);
+  border-radius: var(--radius);
+}
+
+.circuit-bg {
+  position: relative;
+  overflow: hidden;
+}
+.circuit-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(oklch(0.55 0.22 268 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.55 0.22 268 / 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent);
+  animation: circuit-drift 18s linear infinite;
+  pointer-events: none;
+}
+@keyframes circuit-drift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 42px 42px, 42px 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circuit-bg::before { animation: none; }
+  html { scroll-behavior: auto !important; }
 }

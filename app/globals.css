@@ -193,3 +193,67 @@
   .circuit-bg::before { animation: none; }
   html { scroll-behavior: auto !important; }
 }
+/* ============================================================
+   APPEND THIS TO THE BOTTOM OF globals.css (don't replace anything,
+   just add it at the very end). Pure CSS — no component edits needed.
+   ============================================================ */
+
+/* --- 1. Scroll zoom: sections zoom out as they leave, zoom in as they arrive.
+   Targets your <section> tags automatically (Features, How it works, etc.) */
+@supports (animation-timeline: view()) {
+  section {
+    animation: section-zoom linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%, exit 70% cover 100%;
+  }
+  @keyframes section-zoom {
+    0%   { opacity: 0;   transform: scale(0.88) translateY(30px); filter: blur(2px); }
+    30%  { opacity: 1;   transform: scale(1)    translateY(0);    filter: blur(0); }
+    70%  { opacity: 1;   transform: scale(1)    translateY(0);    filter: blur(0); }
+    100% { opacity: 0.35; transform: scale(0.92) translateY(-20px); filter: blur(1px); }
+  }
+}
+/* Safari/Firefox fallback: sections just fade/slide in once via JS-free trick */
+@supports not (animation-timeline: view()) {
+  section {
+    animation: section-fade-in 0.9s ease-out both;
+  }
+  @keyframes section-fade-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* --- 2. Auto-upgrade existing shadcn cards to the glass look, no class edits needed --- */
+.rounded-lg.border,
+[class*="Card"] {
+  background: oklch(1 0 0 / 0.7) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: oklch(0.55 0.22 268 / 0.15) !important;
+  box-shadow: 0 8px 30px oklch(0.45 0.2 268 / 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.rounded-lg.border:hover,
+[class*="Card"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px oklch(0.45 0.2 268 / 0.14);
+}
+
+/* --- 3. Make the main hero heading pop with the gradient --- */
+h1 {
+  background: linear-gradient(90deg, oklch(0.4 0.2 268), oklch(0.55 0.22 268) 45%, oklch(0.7 0.15 200));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --- 4. Buttons get a subtle glow to feel more "futuristic" --- */
+button[class*="bg-primary"], a[class*="bg-primary"] {
+  box-shadow: 0 0 0 0 oklch(0.55 0.22 268 / 0.5);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+button[class*="bg-primary"]:hover, a[class*="bg-primary"]:hover {
+  box-shadow: 0 0 24px 2px oklch(0.55 0.22 268 / 0.45);
+  transform: translateY(-1px);
+}

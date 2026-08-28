@@ -89,14 +89,14 @@ export function GetStarted() {
           {/* CTAs */}
           <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href="#"
+              href="/setup?demo=1"
               className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 font-display text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:w-auto"
             >
               Try it with sample candidates
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="#"
+              href="/setup"
               className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 font-display text-sm font-semibold text-foreground transition-colors hover:bg-secondary sm:w-auto"
             >
               <Upload className="h-4 w-4" />

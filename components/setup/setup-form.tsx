@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useRef, useState } from 'react'
 import {
   FileText,
@@ -269,12 +270,22 @@ export function SetupForm() {
           </div>
         </div>
         <Button
+          asChild={canRun}
           size="lg"
           disabled={!canRun}
           className="w-full gap-2 rounded-xl font-display font-semibold sm:w-auto"
         >
-          <Play className="h-4 w-4" />
-          Run Panel Review
+          {canRun ? (
+            <Link href="/review">
+              <Play className="h-4 w-4" />
+              Run Panel Review
+            </Link>
+          ) : (
+            <span>
+              <Play className="h-4 w-4" />
+              Run Panel Review
+            </span>
+          )}
         </Button>
       </div>
     </main>

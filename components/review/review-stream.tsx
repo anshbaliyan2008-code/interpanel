@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { PanelCommandCenter } from './panel-command-center'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   FileSearch,
@@ -200,6 +201,7 @@ export function ReviewStream() {
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-12 md:py-16">
+      <PanelCommandCenter phase={phase} />
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>

@@ -1,3 +1,106 @@
+/* ============================================================
+   INTERPANEL — light, futuristic theme
+   Add these fonts to your <head> (or app/layout.tsx via next/font):
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+   Then merge the block below into your globals.css (it overrides the
+   shadcn/v0 CSS variables so every existing component picks it up
+   automatically — you don't need to touch component files).
+   ============================================================ */
+
+:root {
+  /* light, cool, "AI lab" palette */
+  --background: 240 33% 98%;         /* near-white, faint indigo tint */
+  --foreground: 234 24% 14%;         /* deep slate-indigo text */
+
+  --card: 0 0% 100%;
+  --card-foreground: 234 24% 14%;
+
+  --primary: 243 75% 59%;            /* electric indigo */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 189 94% 43%;          /* cyan accent */
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 240 20% 94%;
+  --muted-foreground: 234 10% 40%;
+
+  --accent: 189 94% 94%;
+  --accent-foreground: 234 24% 14%;
+
+  --border: 234 20% 88%;
+  --input: 234 20% 90%;
+  --ring: 243 75% 59%;
+
+  --radius: 1rem;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(99, 102, 241, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 0% 20%, rgba(34, 211, 238, 0.10), transparent 55%),
+    hsl(var(--background));
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: hsl(var(--foreground));
+}
+
+h1, h2, h3, .display-font {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Signature "impress the judge" heading treatment */
+.gradient-text {
+  background: linear-gradient(90deg, #4338CA 0%, #6366F1 45%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass card for panels / agent cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  box-shadow: 0 8px 30px rgba(67, 56, 202, 0.08);
+  border-radius: var(--radius);
+}
+
+/* Subtle animated grid / circuit backdrop for a "futuristic" feel.
+   Add className="circuit-bg" to your hero section wrapper. */
+.circuit-bg {
+  position: relative;
+  overflow: hidden;
+}
+.circuit-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent);
+  animation: circuit-drift 18s linear infinite;
+  pointer-events: none;
+}
+@keyframes circuit-drift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 42px 42px, 42px 42px; }
+}
+
+/* Respect reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .circuit-bg::before { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
